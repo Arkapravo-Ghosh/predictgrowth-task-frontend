@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { Skeleton } from "antd";
 import MessageBox from "./MessageBox";
 import MessageInput from "./MessageInput";
 
@@ -23,9 +24,16 @@ const Chat: React.FC<ChatProps> = ({ messages, onSend, loading }) => {
             <span>Start the conversation...</span>
           </div>
         ) : (
-          messages.map((msg, idx) => (
-            <MessageBox key={idx} message={msg.message} sender={msg.sender} timestamp={msg.timestamp} />
-          ))
+          <>
+            {messages.map((msg, idx) => (
+              <MessageBox key={idx} message={msg.message} sender={msg.sender} timestamp={msg.timestamp} />
+            ))}
+            {loading && (
+              <div style={{ margin: '8px 0' }}>
+                <Skeleton.Input active size="large" style={{ width: 220, height: 32, borderRadius: 8 }} />
+              </div>
+            )}
+          </>
         )}
         <div ref={messagesEndRef} />
       </div>
