@@ -42,7 +42,7 @@ const Home = () => {
     await handleSend(msg, token);
   };
 
-  if (isLoading || newUser === null) {
+  if (isLoading) {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
         <span style={{ fontSize: "1.125rem", fontWeight: 600, color: "#4a5568" }}>Loading...</span>
